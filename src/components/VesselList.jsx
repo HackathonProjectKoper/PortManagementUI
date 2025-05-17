@@ -4,8 +4,10 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useState } from 'react'
+import { DialogDemo } from './DialogDemo'
 
-const vessels = [
+const initialVessels = [
     {
         id: "vessel-1",
         name: "Ocean Voyager",
@@ -52,11 +54,23 @@ const vessels = [
 ]
 
 export function VesselList() {
+    const [vessels, setVessels] = useState(initialVessels);
+
+    const addVessel = (newVessel) => {
+        setVessels([...vessels, {
+            ...newVessel,
+            id: `vessel-${vessels.length + 1}`,
+        }]);
+    };
+
     return (
         <Card>
             <CardHeader>
                 <CardTitle>Vessels</CardTitle>
                 <CardDescription>Manage and track all vessels</CardDescription>
+                <div className="">
+                    <DialogDemo onAddVessel={addVessel} />
+                </div>
             </CardHeader>
             <CardContent>
                 <div className="mb-4 flex flex-col gap-4 sm:flex-row">
@@ -71,9 +85,10 @@ export function VesselList() {
                             </SelectTrigger>
                             <SelectContent className="bg-blue-800">
                                 <SelectItem value="all-statuses" className="border-black border-1" >All Statuses</SelectItem>
-                                <SelectItem value="berthed" className="border-black border-1 " >Berthed</SelectItem>
+                                <SelectItem value="berthed" className="border-black border-1" >Berthed</SelectItem>
                                 <SelectItem value="scheduled" className="border-black border-1" >Scheduled</SelectItem>
                                 <SelectItem value="en-route" className="border-black border-1" >En Route</SelectItem>
+                                <SelectItem value="waiting" className="border-black border-1" >Waiting</SelectItem>
                             </SelectContent>
                         </Select>
                         <Select defaultValue="all-types">
@@ -84,6 +99,7 @@ export function VesselList() {
                                 <SelectItem value="all-types" className="border-black border-1 ">All Types</SelectItem>
                                 <SelectItem value="tanker" className="border-black border-1">Tanker</SelectItem>
                                 <SelectItem value="container" className="border-black border-1">Container</SelectItem>
+                                <SelectItem value="passenger" className="border-black border-1">Passenger</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -118,15 +134,18 @@ export function VesselList() {
                                                     ? "border-green-500 bg-green-50 text-green-700"
                                                     : vessel.status === "scheduled"
                                                         ? "border-blue-500 bg-blue-50 text-blue-700"
-                                                        : vessel.status ==="en-route"? "border-amber-500 bg-amber-50 text-amber-700"
-                                                        : "border-gray-500 bg-gray-50 text-gray-700"
+                                                        : vessel.status === "en-route"
+                                                            ? "border-amber-500 bg-amber-50 text-amber-700"
+                                                            : "border-gray-500 bg-gray-50 text-gray-700"
                                             }
                                         >
                                             {vessel.status === "berthed"
                                                 ? "Berthed"
                                                 : vessel.status === "scheduled"
-                                                    ? "Scheduled" : vessel.status === "en-route" ?
-                                                     "En Route" : "Waiting"}
+                                                    ? "Scheduled"
+                                                    : vessel.status === "en-route"
+                                                        ? "En Route"
+                                                        : "Waiting"}
                                         </Badge>
                                     </TableCell>
                                     <TableCell>{vessel.eta}</TableCell>
