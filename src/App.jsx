@@ -2,32 +2,20 @@ import { BerthMap } from "./components/BerthMap"
 import { OperationEvents } from "./components/OperationEvents"
 import { PortUtilizationCard } from "./components/PortUtilizationCard"
 import { VesselList } from "./components/VesselList"
-import DigitalTwin from "./components/anotherpage/digitaltwin"
+import DigitalTwin from "./components/anotherpage/Digitaltwin.jsx"
+import Mainpage from "./components/mainpage/Mainpage.jsx"
+import {Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 function App() {
     return (
-        <div className="flex min-h-screen flex-col bg-muted/40">
-            <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6 bg-blue-900 ">
-                <h1 className="text-xl font-semibold text-white">Ship Management Dashboard</h1>
-                <nav className="ml-auto flex gap-4">
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2 ">Dashboard</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Vessels</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Digital Twin</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Log in</button>
-                </nav>
-            </header>
-            <main className="flex-1 p-6">
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    <PortUtilizationCard />
-                    <div className="grid gap-6 md:col-span-2">
-                        <BerthMap />
-                    </div>
-                </div>
-                <div className="mt-6 grid gap-6 md:grid-cols-2">
-                    <VesselList />
-                    <OperationEvents />
-                </div>
-            </main>
-        </div>
+       <Router>
+           <Routes>
+                <Route path="/digitaltwin" element ={<DigitalTwin/>}></Route>
+                <Route path="/" element={<Mainpage/>}></Route>
+
+           </Routes>
+       </Router>
     )
 }
 
