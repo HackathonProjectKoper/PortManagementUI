@@ -54,7 +54,7 @@ export function BerthMap() {
         <Card className="col-span-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div>
-                    <CardTitle>Atlantic Harbor - Berth Map</CardTitle>
+                    <CardTitle>Luka Koper - Berth Map</CardTitle>
                     <CardDescription>Current berth allocation and availability</CardDescription>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">

@@ -1,10 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import {useState} from "react";
 
 export function PortUtilizationCard() {
     // Port statistics
-    const totalBerths = 8
-    const occupiedBerths = 5
+    const totalBerths = 4
+    const [occupiedBerths, setOccupiedBerths] = useState(3);  // NEED TO IMPLEMENT THE LOGIC WHEN NEW BOAT ADDED TO INCREASE
     const utilizationPercentage = (occupiedBerths / totalBerths) * 100
 
     return (
@@ -19,7 +20,11 @@ export function PortUtilizationCard() {
                         <span className="text-sm font-medium">Berth Utilization</span>
                         <span className="text-sm font-medium">{utilizationPercentage.toFixed(0)}%</span>
                     </div>
-                    <Progress value={utilizationPercentage} className="h-2 " />
+                    <div className="w-full">
+                        <Progress value={utilizationPercentage} />
+                    </div>
+
+
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">

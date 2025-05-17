@@ -43,9 +43,12 @@ const vessels = [
         name: "Western Moon",
         type: "Passenger",
         dimensions: "267m × 13m",
-        status: "en-route",
+        status: "Waiting",
         eta: "May 19, 04:04 PM",
     },
+
+    //NEED TO IMPLEMENT A FOURTH STATUS WHICH WILL REPRESENT 'WAITING' IN FRONT OF THE HARBOR TO BE TAKEN FOR DELOADING OF CARGO
+
 ]
 
 export function VesselList() {
@@ -66,22 +69,21 @@ export function VesselList() {
                             <SelectTrigger className="w-[140px]">
                                 <SelectValue placeholder="Status" />
                             </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all-statuses">All Statuses</SelectItem>
-                                <SelectItem value="berthed">Berthed</SelectItem>
-                                <SelectItem value="scheduled">Scheduled</SelectItem>
-                                <SelectItem value="en-route">En Route</SelectItem>
+                            <SelectContent className="bg-blue-800">
+                                <SelectItem value="all-statuses" className="border-black border-1" >All Statuses</SelectItem>
+                                <SelectItem value="berthed" className="border-black border-1 " >Berthed</SelectItem>
+                                <SelectItem value="scheduled" className="border-black border-1" >Scheduled</SelectItem>
+                                <SelectItem value="en-route" className="border-black border-1" >En Route</SelectItem>
                             </SelectContent>
                         </Select>
                         <Select defaultValue="all-types">
                             <SelectTrigger className="w-[140px]">
                                 <SelectValue placeholder="Type" />
                             </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all-types">All Types</SelectItem>
-                                <SelectItem value="passenger">Passenger</SelectItem>
-                                <SelectItem value="tanker">Tanker</SelectItem>
-                                <SelectItem value="container">Container</SelectItem>
+                            <SelectContent className="bg-blue-800 ">
+                                <SelectItem value="all-types" className="border-black border-1 ">All Types</SelectItem>
+                                <SelectItem value="tanker" className="border-black border-1">Tanker</SelectItem>
+                                <SelectItem value="container" className="border-black border-1">Container</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -116,14 +118,15 @@ export function VesselList() {
                                                     ? "border-green-500 bg-green-50 text-green-700"
                                                     : vessel.status === "scheduled"
                                                         ? "border-blue-500 bg-blue-50 text-blue-700"
-                                                        : "border-amber-500 bg-amber-50 text-amber-700"
+                                                        : vessel.status ==="en-route"? "border-amber-500 bg-amber-50 text-amber-700"
+                                                        : "border-gray-500 bg-gray-50 text-gray-700"
                                             }
                                         >
                                             {vessel.status === "berthed"
                                                 ? "Berthed"
                                                 : vessel.status === "scheduled"
-                                                    ? "Scheduled"
-                                                    : "En Route"}
+                                                    ? "Scheduled" : vessel.status === "en-route" ?
+                                                     "En Route" : "Waiting"}
                                         </Badge>
                                     </TableCell>
                                     <TableCell>{vessel.eta}</TableCell>

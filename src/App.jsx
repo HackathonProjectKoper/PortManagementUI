@@ -2,17 +2,17 @@ import { BerthMap } from "./components/BerthMap"
 import { OperationEvents } from "./components/OperationEvents"
 import { PortUtilizationCard } from "./components/PortUtilizationCard"
 import { VesselList } from "./components/VesselList"
-
+import DigitalTwin from "./components/anotherpage/digitaltwin"
 function App() {
     return (
         <div className="flex min-h-screen flex-col bg-muted/40">
-            <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6">
-                <h1 className="text-xl font-semibold">Ship Management Dashboard</h1>
+            <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6 bg-blue-900 ">
+                <h1 className="text-xl font-semibold text-white">Ship Management Dashboard</h1>
                 <nav className="ml-auto flex gap-4">
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Dashboard</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Vessels</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Schedules</button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Reports</button>
+                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2 ">Dashboard</button>
+                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Vessels</button>
+                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Digital Twin</button>
+                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground text-white hover:cursor-pointer p-2">Log in</button>
                 </nav>
             </header>
             <main className="flex-1 p-6">
